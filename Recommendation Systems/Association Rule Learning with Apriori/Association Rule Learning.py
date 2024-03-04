@@ -55,6 +55,7 @@ def retail_data_prep(dataframe):
     return dataframe
 
 
+# ARL'ye uygun matriks elde etme-Invoice,StockCode gruplamasında quantity>0 ise 1 değilse 0 ile doldur:
 def arl_matrix(dataframe, value = False):
     if value:
         return dataframe.groupby(["Invoice", "Description"]).agg({"Quantity": "sum"}).unstack().fillna(0) \
@@ -70,8 +71,11 @@ def check_id(dataframe, stock_code):
 
 def create_rules(dataframe, country, value = False):
     dataframe = dataframe[dataframe["Country"] == country]
+    # veriyi, ARL formatına getir:
     dataframe = arl_matrix(dataframe, value)
+    # support değeri belirlenenden fazla olan tüm item kombinasyonlarının satın alınma olasılıkları
     frequent_itemsets = apriori(dataframe, min_support = 0.01, use_colnames = True)
+    # Birliktelik kurallarının elde edilmesi:
     rules = association_rules(frequent_itemsets, metric = "support", min_threshold = 0.01)
     return rules
 
@@ -95,7 +99,7 @@ df = retail_data_prep(df)
 def arl_recommender(dataframe, product_id, country, rec_count = 1):
     dataframe_sorted_rules = create_rules(dataframe, country).sort_values("lift", ascending = False)
     recommend_list = []
-
+    # association_rules() ile oluşturulan matrisin değerleri 'frozen tuple'dır.
     for i, product in enumerate(dataframe_sorted_rules["antecedents"]):
         for j in list(product):
             if j == product_id:
