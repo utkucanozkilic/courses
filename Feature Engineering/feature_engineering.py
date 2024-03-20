@@ -145,7 +145,7 @@ df = df.select_dtypes(include = ['float64', 'int64'])
 df = df.dropna()
 df.head()
 
-# Herbir özellikte/değişkende aykırı değerler için işlemler yapsaydık, çok fazla veri manipüle ederdik:
+# Her bir özellikte/değişkende aykırı değerler için işlemler yapsaydık, çok fazla veri manipüle ederdik:
 low, up = outlier_threshold(df, 'carat')
 
 clf = LocalOutlierFactor(n_neighbors = 20)
@@ -222,7 +222,7 @@ df['Embarked'].fillna(df['Embarked'].mode()[0])
 # ya da:
 df['Embarked'].fillna('missing')
 
-# .apply ile kategorik/sayısal tüm sütunlardaki eksik değerleri doldurma
+# .apply ile kategorik tüm sütunlardaki eksik değerleri doldurma
 dff = df.apply(lambda x: x.fillna(x.mode()[0]) if (x.dtype in ['object'] and len(x.unique()) <= 10) else x, axis = 0)
 df['Embarked'].nunique()
 
@@ -266,7 +266,7 @@ df.loc[df['Age'].isnull(), ['Age', 'age_imputed_knn']]
 # sns.heatmap(df.isnull(), cmap = 'viridis', cbar = False)
 # plt.show()
 
-# Isı haritasına benzer matix
+# Isı haritasına benzer matrix
 msno.matrix(df, figsize = (10, 10))
 plt.show()
 
