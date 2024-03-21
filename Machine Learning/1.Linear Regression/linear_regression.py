@@ -1,4 +1,4 @@
-# Sales Prediction with Linear Regression
+# Sales Prediction with 1.Linear Regression
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.model_selection import train_test_split, cross_val_score
 
-# Simple Linear Regression with OLS Using Scikit-Learn
+# Simple 1.Linear Regression with OLS Using Scikit-Learn
 
 df = pd.read_csv(r"C:\Users\Souljah_Pc\PycharmProjects\courses\Machine Learning\datasets\advertising.csv")
 
@@ -53,7 +53,7 @@ mean_absolute_error(y, y_pred)  # >>> 2.549806038927486 (MAE)
 reg_model.score(X, y)  # >>> 0.611875050850071 (R-Kare, Bağımsız değişkenlerin bağımlı değişkenleri açıklama yüzdesi.)
 
 
-# Multiple Linear Regression (Çok Değişkenli)
+# Multiple 1.Linear Regression (Çok Değişkenli)
 df = pd.read_csv(r"C:\Users\Souljah_Pc\PycharmProjects\courses\Machine Learning\datasets\advertising.csv")
 X = df.drop('sales', axis = 1)
 y = df[['sales']]
@@ -86,7 +86,7 @@ reg_model.score(X_test, y_test)  # >>> 0.8927605914615384
 np.mean(np.sqrt(-cross_val_score(reg_model, X, y, cv = 10, scoring = 'neg_mean_squared_error')))  # > 1.6913531708051797
 
 
-# Simple Linear Regression with Gradient Descent from Scratch (2 özellik olan basit doğrusal bağlanım)
+# Simple 1.Linear Regression with Gradient Descent from Scratch (2 özellik olan basit doğrusal bağlanım)
 def cost_function(Y, b, w, X):
     m = len(Y)  # Gözlem sayısı
     sse = 0  # Sum of Square Error

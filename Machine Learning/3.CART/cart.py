@@ -1,10 +1,10 @@
 ################################################
-# Decision Tree Classification: CART
+# Decision Tree Classification: 3.CART
 ################################################
 
 # 1. Exploratory Data Analysis
 # 2. Data Preprocessing & Feature Engineering
-# 3. Modeling using CART
+# 3. Modeling using 3.CART
 # 4. Hyperparameter Optimization with GridSearchCV
 # 5. Final Model
 # 6. Feature Importance
@@ -34,7 +34,7 @@ pd.set_option('display.width', 1881)
 # warnings.simplefilter(action = 'ignore', category = Warning)
 
 
-# 3. Modeling using CART
+# 3. Modeling using 3.CART
 df = pd.read_csv(r'C:\Users\Souljah_Pc\PycharmProjects\courses\Machine Learning\datasets\diabetes.csv')
 
 y = df['Outcome']
@@ -150,7 +150,7 @@ mean_test_score = np.mean(test_score, axis = 1)
 plt.plot(range(1, 11), mean_train_score, label = 'Training Score', color = 'b')
 plt.plot(range(1, 11), mean_test_score, label = 'Test Score', color = 'g')
 
-plt.title('Test Curve for CART')
+plt.title('Test Curve for 3.CART')
 plt.xlabel("Number of max_depth")
 plt.ylabel("AUC")
 plt.tight_layout()
